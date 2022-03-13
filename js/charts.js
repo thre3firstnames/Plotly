@@ -117,23 +117,35 @@ function buildCharts(sample) {
       xaxis: {title: "OTU ID"},
       hovermode: true,
     };
-
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
-
+//______________________________________________________________
+    // 4. Create the trace for the gauge chart.
+    var gaugeData = [{
+     value: washFreq,
+     type: "indicator",
+     mode: "gauge+number",
+     title: {text: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week" },
+     gauge: {
+      axis: {range: [null, 10]},
+      bar: {color: "black"},
+      steps: [
+        { range: [0,2], color: "red"},
+        { range: [2,4], color: "orange"},
+        { range: [4,6], color: "yellow"},
+        { range: [6,8], color: "limegreen"},
+        { range: [8,10], color: "green"}]
+    },
+    dtick: 2
+    }];
     
-    // // 4. Create the trace for the gauge chart.
-    // var gaugeData = [
-     
-    // ];
-    
-    // // 5. Create the layout for the gauge chart.
-    // var gaugeLayout = { 
-     
-    // };
+    // 5. Create the layout for the gauge chart.
+    var gaugeLayout = { 
+      // margin: { t: 25, r: 25, l: 25, b: 25 },
+    };x
 
-    // // 6. Use Plotly to plot the gauge data and layout.
-    // Plotly.newPlot();
+    // 6. Use Plotly to plot the gauge data and layout.
+    Plotly.newPlot("gauge", gaugeData, gaugeLayout);
 
   });
 }
