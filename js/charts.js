@@ -59,23 +59,25 @@ function buildCharts(sample) {
   d3.json("samples.json").then((data) => {
     // 3. Create a variable that holds the samples array. 
     var sampleNames = data.samples;
-    // console.log(sampleNames);
+
     // 4. Create a variable that filters the samples for the object with the desired sample number.
     var filtSamp = sampleNames.filter(sampleItem => sampleItem.id === sample);
-    // console.log(filtSamp);
+
     //  5. Create a variable that holds the first sample in the array.
     var firstSample = filtSamp[0];
-    // console.log(firstSample);
  
+console.log(firstSample);
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var otuIds = firstSample.otu_ids;
-    var otuLabels = firstSample.otu_labels;
-    var sampleValues =firstSample.sample_values;
-
+    var otuIds = firstSample.otu_ids.slice(0,10);
+    var otuLabels = firstSample.otu_labels.slice(0,10);
+    var sampleValues =firstSample.sample_values.slice(0,10);
+    console.log(otuIds);
+    console.log(otuLabels);
+    console.log(sampleValues);
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
-    var yticks = otuIds.slice(0,10).map(obj => `OTU ${obj}`).reverse()
+    var yticks = otuIds.slice(0,10).map(obj => `OTU ${obj}`).reverse();
 
     // 8. Create the trace for the bar chart. 
     var barData =[{
@@ -83,7 +85,7 @@ function buildCharts(sample) {
       y: yticks,
       type: "bar",
       orientation: 'h',
-      text: [otuLabels]
+      text: otuLabels.reverse(),
       
     }];
     // 9. Create the layout for the bar chart. 
