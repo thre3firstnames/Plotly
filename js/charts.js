@@ -63,9 +63,19 @@ function buildCharts(sample) {
     // 4. Create a variable that filters the samples for the object with the desired sample number.
     var filtSamp = sampleNames.filter(sampleItem => sampleItem.id === sample);
 
+    // 1. Create a variable that filters the metadata array for the object with the desired sample number.
+    var freqData = data.metadata.filter(sampleObj => sampleObj.id == sample);
+
     //  5. Create a variable that holds the first sample in the array.
     var firstSample = filtSamp[0];
- 
+
+    // // 2. Create a variable that holds the first sample in the metadata array.
+    var metaSample = freqData[0];
+
+    // // 3. Create a variable that holds the washing frequency.
+    var washFreq = metaSample.wfreq;
+    console.log(washFreq);
+
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otuIds = firstSample.otu_ids;
     var otuLabels = firstSample.otu_labels;
@@ -100,7 +110,7 @@ function buildCharts(sample) {
       mode: "markers",
       marker: {size: sampleValues, color: otuIds},
     }];
-console.log(bubbleData);
+
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
       title: "Bacteria Cultures per Sample",
@@ -110,5 +120,20 @@ console.log(bubbleData);
 
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
+
+    
+    // // 4. Create the trace for the gauge chart.
+    // var gaugeData = [
+     
+    // ];
+    
+    // // 5. Create the layout for the gauge chart.
+    // var gaugeLayout = { 
+     
+    // };
+
+    // // 6. Use Plotly to plot the gauge data and layout.
+    // Plotly.newPlot();
+
   });
 }
