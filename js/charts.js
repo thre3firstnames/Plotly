@@ -96,17 +96,15 @@ function buildCharts(sample) {
     var bubbleData = [{
       x: otuIds,
       y: sampleValues,
-      text: [Object.values(firstSample).forEach(value => 
-        ` ${value.otu_ids} ${value.otu_labels} ${value.sample_values} `
-        // ` ${otuLabels[0]} <br> ${sampleValues[0]}`],
+      text: otuLabels,
       mode: "markers",
-      marker: {size: sampleValues},
+      marker: {size: sampleValues, color: otuIds},
     }];
 console.log(bubbleData);
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
       title: "Bacteria Cultures per Sample",
-      // xaxis: "OTU ID",
+      xaxis: {title: "OTU ID"},
       hovermode: true,
     };
 
